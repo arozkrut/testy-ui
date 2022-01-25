@@ -1,0 +1,160 @@
+---
+openapi: 3.0.3
+info:
+  title: Forms
+  description: Applications managing forms and their templates
+  version: "1.0"
+servers:
+- url: http://localhost:8080
+tags:
+- name: Form REST
+paths:
+  /form:
+    get:
+      tags:
+      - Form REST
+      description: Get all forms.
+      operationId: getAllForms
+      responses:
+        "200":
+          description: All forms.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GoogleFormDTO'
+        "404":
+          description: Forms were not found
+    post:
+      tags:
+      - Form REST
+      description: Create a form.
+      operationId: saveForm
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GoogleFormCreateDTO'
+      responses:
+        "200":
+          description: The created form resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleFormDTO'
+        "400":
+          description: Bad request
+  /form/{id}:
+    get:
+      tags:
+      - Form REST
+      description: Get form by id.
+      operationId: getFormById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int64
+          type: integer
+      responses:
+        "200":
+          description: The corresponding form resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleFormDTO'
+        "404":
+          description: Form was not found
+    put:
+      tags:
+      - Form REST
+      description: Update form.
+      operationId: updateForm
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int64
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GoogleFormCreateDTO'
+      responses:
+        "404":
+          description: Form was not found
+    delete:
+      tags:
+      - Form REST
+      description: Delete form.
+      operationId: deleteForm
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int64
+          type: integer
+      responses:
+        "404":
+          description: Form was not found
+components:
+  schemas:
+    GoogleFormCreateDTO:
+      required:
+      - json
+      - name
+      type: object
+      properties:
+        json:
+          description: Form content in json format
+          pattern: \S
+          type: string
+          nullable: false
+        name:
+          description: Name of the form
+          pattern: \S
+          type: string
+          nullable: false
+        startDate:
+          format: date-time
+          description: Date when the exam is supposed to start.
+          type: string
+        endDate:
+          format: date-time
+          description: Date when the exam is supposed to end.
+          type: string
+    GoogleFormDTO:
+      required:
+      - id
+      - json
+      - name
+      type: object
+      properties:
+        id:
+          format: int64
+          description: ID
+          type: integer
+          nullable: false
+        json:
+          description: Form content in json format
+          pattern: \S
+          type: string
+          nullable: false
+        name:
+          description: Name of the form
+          pattern: \S
+          type: string
+          nullable: false
+        startDate:
+          format: date-time
+          description: Date when the exam is supposed to start.
+          type: string
+        endDate:
+          format: date-time
+          description: Date when the exam is supposed to end.
+          type: string

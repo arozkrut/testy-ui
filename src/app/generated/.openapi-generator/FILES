@@ -1,0 +1,14 @@
+.gitignore
+.openapi-generator-ignore
+README.md
+api.module.ts
+api/api.ts
+api/formREST.service.ts
+configuration.ts
+encoder.ts
+git_push.sh
+index.ts
+model/googleFormCreateDTO.ts
+model/googleFormDTO.ts
+model/models.ts
+variables.ts
