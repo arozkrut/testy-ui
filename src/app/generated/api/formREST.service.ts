@@ -146,7 +146,6 @@ export class FormRESTService {
         }
 
         return this.httpClient.delete<any>(`${this.configuration.basePath}/form/${encodeURIComponent(String(id))}`,
-            null,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,

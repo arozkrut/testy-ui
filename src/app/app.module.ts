@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MenubarModule } from 'primeng/menubar';
@@ -12,7 +13,8 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MenubarModule
+    MenubarModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

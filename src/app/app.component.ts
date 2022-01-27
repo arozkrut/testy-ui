@@ -13,10 +13,12 @@ export class AppComponent {
     this.items = [
       {
         label: "<b>Testy z użyciem Google Forms</b>",
+        routerLink: [""],
         escape: false,
       },
       {
-        label: "Wszystkie testy"
+        label: "Wszystkie testy",
+        routerLink: ["/forms"]
       },
       {
         label: "Dodaj nowy test"
